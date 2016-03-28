@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainModel"
+            type="lokesh.countdownapp.ViewModel.PlayViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="lokesh.countdownapp.PlayActivity">
+
+        <LinearLayout
+            android:baselineAligned="false"
+            android:layout_below="@+id/topdivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/target"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(mainModel.targetResult)}"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/your_result"
+                    android:textColor="@color/colorAccent"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(mainModel.yourResult)}"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/StepsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/divider"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorBlack"
+            android:clipToPadding="false"
+            android:overScrollMode="always"
+            app:itemViewBinder="@{mainModel.gameStepItemViewBinder}"
+            app:items="@{mainModel.stepModels}"
+            app:visibility='@{mainModel.stepModels.size() != 0 ? View.VISIBLE:View.GONE}' />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/RecyclerView"
+            android:background="@color/colorGray"
+            app:visibility='@{mainModel.stepModels.size() != 0 ? View.VISIBLE:View.GONE}'/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/footerLayout"
+            android:layout_marginBottom="5dp"
+            android:clipToPadding="false"
+            android:overScrollMode="always"
+            app:clickHandler="@{mainModel.clickItemHandler}"
+            app:itemViewBinder="@{mainModel.gameItemViewBinder}"
+            app:items="@{mainModel.selectedModels}" />
+
+        <LinearLayout
+            android:id="@+id/footerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:onClick="@{mainModel.clickResetHandler}"
+                android:text="@string/reset"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:onClick="@{mainModel.clickUndoHandler}"
+                android:text="@{mainModel.undoButtonText}"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timerText"
+            android:text="@{mainModel.timerText}"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="30sp" />
+        <View
+            android:id="@+id/topdivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/timerText"
+            android:background="@color/colorGray"
+            android:layout_margin="2dp"/>
+    </RelativeLayout>
+</layout>

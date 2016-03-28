@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Countdown</string>
+    <string name="new_game">NEW GAME</string>
+    <string name="retry">RETRY</string>
+    <string name="show_answer">SHOW ANSWER</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="start">START</string>
+    <string name="confirmation_title">Confirmation</string>
+    <string name="success_content">Hurrah! You are a genius.</string>
+    <string name="neutral_content">Mmmh! Still it can be better</string>
+    <string name="failed_content">Oops! Are you an alien.</string>
+    <string name="timesup_content">Sorry! Times Up.</string>
+
+    <string name="steps_for_result">Steps for Answer</string>
+    <string name="selected_content">Selected Nos are %s and you have 30 secs to solve. Would you like to start ?</string>
+    <string name="selected_numbers">Selected Numbers</string>
+    <string name="start_game">Start Game</string>
+    <string name="target">Target</string>
+    <string name="your_result">Your Result</string>
+    <string name="reset">Reset</string>
+    <string name="logo_desc">Logo</string>
+    <string name="result_desc">Result Description</string>
+    <string name="close_desc">Close Description</string>
+</resources>

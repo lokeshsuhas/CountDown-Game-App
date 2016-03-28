@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="lokesh.countdownapp.Models.BoardModel" />
+    </data>
+    <LinearLayout
+        android:layout_width='70dp'
+        android:layout_height='70dp'
+        android:layout_margin="2dp"
+        android:background='@{model.getOperation() ? @drawable/rect_selected_fill : (model.getIsLarge() ? @drawable/rect_fill : @drawable/rect_small_fill)}'
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(model.getValue())}"
+            android:textColor='@color/colorWhite'
+            android:textSize='@dimen/layout_text_small'
+            android:textStyle="bold" />
+    </LinearLayout>
+</layout>

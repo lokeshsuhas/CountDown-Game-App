@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="lokesh.countdownapp.ViewModel.BoardViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        tools:context="lokesh.countdownapp.GameActivity">
+        <LinearLayout
+            app:visibility='@{viewModel.numbersCount != 6 ? View.VISIBLE : View.GONE}'
+            android:id="@+id/selectedLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorBlack"
+                android:text="@string/selected_numbers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/activity_users_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:overScrollMode="always"
+                android:layout_marginTop="5dp"
+                app:clickHandler="@{viewModel.clickSelectedItemHandler}"
+                app:items="@{viewModel.selected}"
+                app:itemViewBinder="@{viewModel.selectedItemViewBinder}"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorGray" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerView"
+            android:layout_below="@+id/selectedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:clickHandler="@{viewModel.clickBoardItemHandler}"
+            app:items="@{viewModel.boardData}"
+            app:itemViewBinder="@{viewModel.boardItemViewBinder}"
+            android:overScrollMode="always"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text='@{viewModel.numbersCount == 0 ? "Click Start Game" : "Select " + viewModel.numbersCount + " numbers to start"}'
+            android:textColor="@color/colorBlack"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/startGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorGray"
+            android:onClick="@{viewModel.onStartGameClick}"
+            android:text="@string/start_game"
+            app:visibility='@{viewModel.numbersCount == 0 ? View.VISIBLE : View.GONE}'
+            android:textColor="@color/colorBlack" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="lokesh.countdownapp.ViewModel.SplashViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context="lokesh.countdownapp.SplashActivity">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/newGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent"
+            android:text="@string/new_game"
+            android:onClick="@{viewModel.onNewGameClick}"
+            android:textColor="@color/colorWhite" />
+
+        <ImageView
+            android:contentDescription="@string/logo_desc"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_hourglass_empty_white_24dp"
+            android:layout_above="@+id/textView"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</layout>
