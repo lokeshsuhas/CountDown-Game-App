@@ -86,8 +86,8 @@ public class PlayViewModel extends BaseObservable implements IViewModel {
                     } else if (selectedModels.size() == 5) {
 
                         int r = Integer.valueOf(selectedModels.get(0).getValue().toString());
-                        int result = Math.abs(r - targetResult.get());
-                        if (result <= 5 && result >= 1) {
+                        int diff = Math.max(r , targetResult.get()) - Math.min(r,targetResult.get());
+                        if (diff <= 5 && diff >= 1) {
                             mainViewListener.onResult(ResultEnum.NEUTRAL, resultModel);
                         } else {
                             mainViewListener.onResult(ResultEnum.FAILED, resultModel);
@@ -201,7 +201,7 @@ public class PlayViewModel extends BaseObservable implements IViewModel {
                 if (model == null) {
                     model = new GameStepModel(PlayViewModel.this);
                 }
-                if (viewModel.getValue().equals("X") && selectedModels.size() <= 5) {
+                if (viewModel.getValue().equals("X") || selectedModels.size() <= 5) {
                     return;
                 }
                 if (!model.isDone()) {
